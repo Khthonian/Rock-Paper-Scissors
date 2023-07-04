@@ -18,20 +18,16 @@ function validateInput(playerInput) {
     const validOptions = ["Rock", "Paper", "Scissors"];
     const inputCheck = playerInput.charAt(0).toUpperCase() + playerInput.substring(1).toLowerCase();
 
-    return inputCheck, validOptions.includes(inputCheck);
+    return validOptions.includes(inputCheck);
 }
-
-// Tester console
-console.log(getComputerChoice());
 
 function playRound(playerSelection, computerSelection) {
     // Determine the winner of the round
 
     // Tie round
     if (playerSelection === computerSelection) {
-        //return "Tied Round!", 2;
         return {
-            announce: "Tied Round",
+            announce: "Tied Round!",
             outcome: 2
         };
     }
@@ -39,7 +35,6 @@ function playRound(playerSelection, computerSelection) {
     // Player chooses Rock
     else if (playerSelection == "Rock") {
         if (computerSelection == "Paper") {
-            //return "You Lose! Paper beats Rock.", 1; 
             return {
                 announce: "You Lose! Paper beats Rock.",
                 outcome: 1
@@ -47,7 +42,6 @@ function playRound(playerSelection, computerSelection) {
         }
 
         else {
-            //return "You Win! Rock beats Scissors.", 0;
             return {
                 announce: "You Win! Rock beats Scissors.",
                 outcome: 0
@@ -58,7 +52,6 @@ function playRound(playerSelection, computerSelection) {
     // Player chooses Paper
     else if (playerSelection == "Paper") {
         if (computerSelection == "Scissors") {
-            //return "You Lose! Scissors beats Paper.", 1;
             return {
                 announce: "You Lose! Scissors beats Paper.",
                 outcome: 1
@@ -66,7 +59,6 @@ function playRound(playerSelection, computerSelection) {
         }
 
         else {
-            //return "You Win! Paper beats Rock.", 0;
             return {
                 announce: "You Win! Paper beats Rock.",
                 outcome: 0
@@ -77,7 +69,6 @@ function playRound(playerSelection, computerSelection) {
     // Player chooses Scissors
     else if (playerSelection == "Scissors") {
         if (computerSelection == "Rock") {
-            //return "You Lose! Rock beats Scissors.", 1;
             return {
                 announce: "You Lose! Rock beats Scissors.",
                 outcome: 1
@@ -85,7 +76,6 @@ function playRound(playerSelection, computerSelection) {
         }
 
         else {
-            //return "You Win! Scissors beats Paper.", 0;
             return {
                 announce: "You Win! Scissors beats Paper.",
                 outcome: 0
@@ -96,10 +86,11 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     // Store the scores
-    let playerScore = 0, computerScore = 0;
+    let playerScore = 0;
+    let computerScore = 0;
     
     // Play five rounds of RPS
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         // Check for a valid input
         let playerSelection;
         const computerSelection = getComputerChoice();
@@ -113,6 +104,8 @@ function game() {
             if (!validInput) {
                 alert("Please enter a valid input");
             }
+
+            playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.substring(1).toLowerCase();
         }
 
         // Play the round and collect the outcome
@@ -123,11 +116,11 @@ function game() {
         console.log(roundAnnounce);
 
         // Check who won the round
-        if (roundOutcome = 0) {
+        if (roundOutcome == 0) {
             playerScore++;
         }
 
-        else if (roundOutcome = 1) {
+        else if (roundOutcome == 1) {
             computerScore++;
         }
 
@@ -137,21 +130,18 @@ function game() {
     // Determine the winner of the game from the final score
     if (playerScore > computerScore) {
         console.log("Player Wins!");
+        console.log("Final Score: Player " + playerScore + " - " + computerScore + " CPU");
     }
 
     else if (playerScore < computerScore) {
         console.log("CPU Wins!");
+        console.log("Final Score: Player " + playerScore + " - " + computerScore + " CPU");
     }
 
     else {
         console.log("Tied Game!");
+        console.log("Final Score: Player " + playerScore + " - " + computerScore + " CPU");
     }
 }
-
-// Tester console
-const playerSelection = "Rock";
-const computerSelection = getComputerChoice();
-let testOut = playRound(playerSelection, computerSelection); 
-//console.log(testOut.substring(0, 8)); 
 
 game();
