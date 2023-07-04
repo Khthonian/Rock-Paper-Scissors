@@ -13,4 +13,17 @@ function getComputerChoice() {
     }
 }
 
+function validateInput(playerInput) {
+    const validOptions = ['Rock', 'Paper', 'Scissors'];
+    const inputCheck = playerInput.charAt(0).toUpperCase() + playerInput.substring(1).toLowerCase();
+
+    return inputCheck, validOptions.includes(inputCheck);
+}
+
+// Tester console
 console.log(getComputerChoice());
+
+function playRound(playerSelection, computerSelection) {
+    // Determine player input
+    
+}
