@@ -14,6 +14,7 @@ function getComputerChoice() {
 }
 
 function validateInput(playerInput) {
+    // Check to see if the user input is suitable
     const validOptions = ["Rock", "Paper", "Scissors"];
     const inputCheck = playerInput.charAt(0).toUpperCase() + playerInput.substring(1).toLowerCase();
 
@@ -28,44 +29,129 @@ function playRound(playerSelection, computerSelection) {
 
     // Tie round
     if (playerSelection === computerSelection) {
-        return "Tied Round!";
+        //return "Tied Round!", 2;
+        return {
+            announce: "Tied Round",
+            outcome: 2
+        };
     }
 
     // Player chooses Rock
     else if (playerSelection == "Rock") {
         if (computerSelection == "Paper") {
-            return "You Lose! Paper beats Rock."; 
+            //return "You Lose! Paper beats Rock.", 1; 
+            return {
+                announce: "You Lose! Paper beats Rock.",
+                outcome: 1
+            };
         }
 
         else {
-            return "You Win! Rock beats Scissors.";
+            //return "You Win! Rock beats Scissors.", 0;
+            return {
+                announce: "You Win! Rock beats Scissors.",
+                outcome: 0
+            };
         }
     }
 
     // Player chooses Paper
     else if (playerSelection == "Paper") {
         if (computerSelection == "Scissors") {
-            return "You Lose! Scissors beats Paper.";
+            //return "You Lose! Scissors beats Paper.", 1;
+            return {
+                announce: "You Lose! Scissors beats Paper.",
+                outcome: 1
+            };
         }
 
         else {
-            return "You Win! Paper beats Rock.";
+            //return "You Win! Paper beats Rock.", 0;
+            return {
+                announce: "You Win! Paper beats Rock.",
+                outcome: 0
+            };
         }
     }
 
     // Player chooses Scissors
     else if (playerSelection == "Scissors") {
         if (computerSelection == "Rock") {
-            return "You Lose! Rock beats Scissors.";
+            //return "You Lose! Rock beats Scissors.", 1;
+            return {
+                announce: "You Lose! Rock beats Scissors.",
+                outcome: 1
+            };
         }
 
         else {
-            return "You Win! Scissors beats Paper.";
+            //return "You Win! Scissors beats Paper.", 0;
+            return {
+                announce: "You Win! Scissors beats Paper.",
+                outcome: 0
+            };
         }
+    }
+}
+
+function game() {
+    // Store the scores
+    let playerScore = 0, computerScore = 0;
+    
+    // Play five rounds of RPS
+    for (let i = 0; i < 4; i++) {
+        // Check for a valid input
+        let playerSelection;
+        const computerSelection = getComputerChoice();
+        let validInput = false;
+
+        while (!validInput) {
+            playerSelection = prompt("Enter your choice (Rock, Paper, or Scissors): ");
+
+            validInput = validateInput(playerSelection);
+
+            if (!validInput) {
+                alert("Please enter a valid input");
+            }
+        }
+
+        // Play the round and collect the outcome
+        let roundReturn = playRound(playerSelection, computerSelection);
+        let roundAnnounce = roundReturn.announce;
+        let roundOutcome = roundReturn.outcome;
+
+        console.log(roundAnnounce);
+
+        // Check who won the round
+        if (roundOutcome = 0) {
+            playerScore++;
+        }
+
+        else if (roundOutcome = 1) {
+            computerScore++;
+        }
+
+        console.log("Current Score: Player " + playerScore + " - " + computerScore + " CPU");
+    }
+
+    // Determine the winner of the game from the final score
+    if (playerScore > computerScore) {
+        console.log("Player Wins!");
+    }
+
+    else if (playerScore < computerScore) {
+        console.log("CPU Wins!");
+    }
+
+    else {
+        console.log("Tied Game!");
     }
 }
 
 // Tester console
 const playerSelection = "Rock";
 const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+let testOut = playRound(playerSelection, computerSelection); 
+//console.log(testOut.substring(0, 8)); 
+
+game();
