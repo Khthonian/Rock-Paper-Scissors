@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
+    <link rel="stylesheet" href="./style.css">
     <title>Rock, Paper, Scissors!</title>
 </head>
 <body>
     <header>
         <h1>Rock, Paper, Scissors!</h1>
     </header>
-    <p id="game-outcome" class="game-outcome">First to five wins the game!</p>
-    <p id="game-message" class="game-message">Choose your move!</p>
-    <div id="scores">
-        <p id="player-score" class="score-text">Player: </p>
-        <p id="computer-score" class="score-text">CPU: </p>
-    </div>
-    <div id="buttons">
-        <button id="rock-button" class="rps-button">
-            <div class="signal">✊</div>
-        </button>
-        <button id="paper-button" class="rps-button">
-            <div class="signal">🤚</div>
-        </button>
-        <button id="scissors-button" class="rps-button">
-            <div class="signal">✌️</div>
-        </button>
+    <div id="focus">
+        <p id="game-outcome" class="game-outcome">First to five wins the game!</p>
+        <p id="game-message" class="game-message">Choose your move!</p>
+        <div id="scores">
+            <p id="player-score" class="score-text">Player: </p>
+            <p id="computer-score" class="score-text">CPU: </p>
+        </div>
+        <div id="buttons">
+            <button id="rock-button" class="rps-button">
+                <div class="signal">✊</div>
+            </button>
+            <button id="paper-button" class="rps-button">
+                <div class="signal">🤚</div>
+            </button>
+            <button id="scissors-button" class="rps-button">
+                <div class="signal">✌️</div>
+            </button>
+        </div>
+        <p class="game-rules">A win is worth one point.</p>
+        <p class="game-rules">A draw is worth half a point, to each player.</p>
     </div>
     <footer class="footer">
         <div>
@@ -36,7 +42,7 @@
         </div>
         <div>
             <a href="https://github.com/khthonian" target="_blank">
-                <img src="images/github-mark.svg" alt="github icon">
+                <img id="github-link" src="images/github-mark.svg" alt="github icon">
             </a>
         </div>
     </footer>

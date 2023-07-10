@@ -95,10 +95,25 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(playerSelection) {
+function gameCheck() {
+    // Determine the winner of the game from the final score
+    if (playerScore == 5) {
+        gameOutcome.textContent = "Player Wins!";
+        gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
+    }
 
-    if (playerScore == 0 && computerScore == 0) {
+    else if (computerScore == 5) {
+        gameOutcome.textContent = "CPU Wins!";
+        gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
+    }
+}
+
+function game(playerSelection) {
+    // Check if the game has restarted
+    if (playerScore == 5 || computerScore == 5) {
         gameOutcome.textContent = "First to five wins the game!";
+        playerScore = 0;
+        computerScore = 0;
     }
     
     const computerSelection = getComputerChoice();
@@ -114,28 +129,21 @@ function game(playerSelection) {
     // Check who won the round
     if (roundOutcome == 0) {
         playerScore++;
+        gameCheck();
     }
 
     else if (roundOutcome == 1) {
         computerScore++;
+        gameCheck();
     }
 
+    else if (roundOutcome == 2) {
+        playerScore += 0.5;
+        computerScore += 0.5;
+        gameCheck();
+    }
+
+    // Update the scores
     playerText.textContent = "Player: " + playerScore;
     computerText.textContent = "CPU: " + computerScore;
-
-
-    // Determine the winner of the game from the final score
-    if (playerScore == 5) {
-        gameOutcome.textContent = "Player Wins!";
-        gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
-        playerScore = 0;
-        computerScore = 0;
-    }
-
-    else if (playerScore == 5) {
-        gameOutcome.textContent = "CPU Wins!";
-        gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
-        playerScore = 0;
-        computerScore = 0;
-    }
 }
