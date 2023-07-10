@@ -1,3 +1,21 @@
+// Store the scores
+let playerScore = 0;
+let computerScore = 0;
+
+// UI Interaction   
+const rockButton = document.getElementById("rock-button");
+const paperButton = document.getElementById("paper-button");
+const scissorsButton = document.getElementById("scissors-button");
+const gameOutcome = document.getElementById("game-outcome");
+const gameMessage = document.getElementById("game-message");
+const playerText = document.getElementById("player-score");
+const computerText = document.getElementById("computer-score");
+
+// Event listeners for button clicks
+rockButton.addEventListener('click', () => game("Rock"));
+paperButton.addEventListener("click", () => game("Paper"));
+scissorsButton.addEventListener("click", () => game("Scissors"));
+
 // Game
 function getComputerChoice() {
     // Get a random value to decide between the outputs
@@ -12,14 +30,6 @@ function getComputerChoice() {
         case 2:
             return "Scissors";
     }
-}
-
-function validateInput(playerInput) {
-    // Check to see if the user input is suitable
-    const validOptions = ["Rock", "Paper", "Scissors"];
-    const inputCheck = playerInput.charAt(0).toUpperCase() + playerInput.substring(1).toLowerCase();
-
-    return validOptions.includes(inputCheck);
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -85,62 +95,47 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    // Store the scores
-    let playerScore = 0;
-    let computerScore = 0;
+function game(playerSelection) {
+
+    if (playerScore == 0 && computerScore == 0) {
+        gameOutcome.textContent = "First to five wins the game!";
+    }
     
-    // Play five rounds of RPS
-    //for (let i = 0; i < 5; i++) {
-        // Check for a valid input
-        let playerSelection;
-        const computerSelection = getComputerChoice();
-        let validInput = false;
+    const computerSelection = getComputerChoice();
+    
+    // Play the round and collect the outcome
+    let roundReturn = playRound(playerSelection, computerSelection);
+    let roundAnnounce = roundReturn.announce;
+    let roundOutcome = roundReturn.outcome;
 
-        while (!validInput) {
-            playerSelection = prompt("Enter your choice (Rock, Paper, or Scissors): ");
+    //console.log(roundAnnounce);
+    gameMessage.textContent = roundAnnounce;
 
-            validInput = validateInput(playerSelection);
+    // Check who won the round
+    if (roundOutcome == 0) {
+        playerScore++;
+    }
 
-            if (!validInput) {
-                alert("Please enter a valid input");
-            }
+    else if (roundOutcome == 1) {
+        computerScore++;
+    }
 
-            playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.substring(1).toLowerCase();
-        }
+    playerText.textContent = "Player: " + playerScore;
+    computerText.textContent = "CPU: " + computerScore;
 
-        // Play the round and collect the outcome
-        let roundReturn = playRound(playerSelection, computerSelection);
-        let roundAnnounce = roundReturn.announce;
-        let roundOutcome = roundReturn.outcome;
-
-        console.log(roundAnnounce);
-
-        // Check who won the round
-        if (roundOutcome == 0) {
-            playerScore++;
-        }
-
-        else if (roundOutcome == 1) {
-            computerScore++;
-        }
-
-        console.log("Current Score: Player " + playerScore + " - " + computerScore + " CPU");
-    //}
 
     // Determine the winner of the game from the final score
-    if (playerScore > computerScore) {
-        console.log("Player Wins!");
-        console.log("Final Score: Player " + playerScore + " - " + computerScore + " CPU");
+    if (playerScore == 5) {
+        gameOutcome.textContent = "Player Wins!";
+        gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
+        playerScore = 0;
+        computerScore = 0;
     }
 
-    else if (playerScore < computerScore) {
-        console.log("CPU Wins!");
-        console.log("Final Score: Player " + playerScore + " - " + computerScore + " CPU");
-    }
-
-    else {
-        console.log("Tied Game!");
-        console.log("Final Score: Player " + playerScore + " - " + computerScore + " CPU");
+    else if (playerScore == 5) {
+        gameOutcome.textContent = "CPU Wins!";
+        gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
+        playerScore = 0;
+        computerScore = 0;
     }
 }
