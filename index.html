@@ -7,6 +7,39 @@
     <title>Rock, Paper, Scissors!</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Rock, Paper, Scissors!</h1>
+    </header>
+    <p id="game-outcome" class="game-outcome">First to five wins the game!</p>
+    <p id="game-message" class="game-message">Choose your move!</p>
+    <div id="scores">
+        <p id="player-score" class="score-text">Player: </p>
+        <p id="cpu-score" class="score-text">CPU: </p>
+    </div>
+    <div id="buttons">
+        <button id="rock" class="rps-button">
+            <div class="signal">✊</div>
+        </button>
+        <button id="paper" class="rps-button">
+            <div class="signal">🤚</div>
+        </button>
+        <button id="scissors" class="rps-button">
+            <div class="signal">✌️</div>
+        </button>
+    </div>
+    <footer class="footer">
+        <div>
+          Copyright ©
+          <script>
+            document.write(new Date().getFullYear())
+          </script>
+          Khthonian
+        </div>
+        <div>
+            <a href="https://github.com/khthonian" target="_blank">
+                <img src="images/github-mark.svg" alt="github icon">
+            </a>
+        </div>
+    </footer>
 </body>
 </html>

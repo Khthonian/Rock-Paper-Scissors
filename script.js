@@ -1,3 +1,4 @@
+// Game
 function getComputerChoice() {
     // Get a random value to decide between the outputs
     rpsValue = Math.floor(Math.random() * 3);
@@ -90,7 +91,7 @@ function game() {
     let computerScore = 0;
     
     // Play five rounds of RPS
-    for (let i = 0; i < 5; i++) {
+    //for (let i = 0; i < 5; i++) {
         // Check for a valid input
         let playerSelection;
         const computerSelection = getComputerChoice();
@@ -125,7 +126,7 @@ function game() {
         }
 
         console.log("Current Score: Player " + playerScore + " - " + computerScore + " CPU");
-    }
+    //}
 
     // Determine the winner of the game from the final score
     if (playerScore > computerScore) {
@@ -143,5 +144,3 @@ function game() {
         console.log("Final Score: Player " + playerScore + " - " + computerScore + " CPU");
     }
 }
-
-game();
