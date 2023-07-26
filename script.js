@@ -97,12 +97,12 @@ function playRound(playerSelection, computerSelection) {
 
 function gameCheck() {
     // Determine the winner of the game from the final score
-    if (playerScore == 5) {
+    if (playerScore >= 5) {
         gameOutcome.textContent = "Player Wins!";
         gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
     }
 
-    else if (computerScore == 5) {
+    else if (computerScore >= 5) {
         gameOutcome.textContent = "CPU Wins!";
         gameMessage.textContent = "Final Score: Player " + playerScore + " - " + computerScore + " CPU";
     }
@@ -110,7 +110,7 @@ function gameCheck() {
 
 function game(playerSelection) {
     // Check if the game has restarted
-    if (playerScore == 5 || computerScore == 5) {
+    if (playerScore >= 5 || computerScore >= 5) {
         gameOutcome.textContent = "First to five wins the game!";
         playerScore = 0;
         computerScore = 0;
